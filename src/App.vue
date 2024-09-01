@@ -531,9 +531,8 @@ img, video, iframe {
 
 /* Add this new media query */
 @media (max-width: 1240px) {
-  #app {
-    max-width: 100%;
-    border-radius: 0;
+  body {
+    background-attachment: scroll;
   }
 }
 </style>
