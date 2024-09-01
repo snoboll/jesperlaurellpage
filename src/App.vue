@@ -23,11 +23,11 @@
       </section>
 
       <section class="featured-projects">
-        <h2>Featured Projects</h2>
+        <h2>What I do</h2>
         <div class="project-grid">
           <div v-for="project in featuredProjects" :key="project.name" class="project-card">
             <i :class="['project-icon', project.icon]"></i>
-            <h3>{{ project.name }}</h3>
+            <h4>{{ project.name }}</h4>
             <p>{{ project.description }}</p>
             <a :href="project.url" target="_blank" class="project-link">View Project</a>
           </div>
@@ -112,7 +112,7 @@ export default {
           name: 'currencydebasement2',
           description: 'An interactive visualization of global currency debasement.',
           icon: 'fa-solid fa-brain',
-          url: 'https://github.com/snoboll/currencydebasement2'
+          url: 'https://github.com/snoboll/c'
         }
       ],
       contactForm: {
