@@ -9,7 +9,7 @@
       <section class="hero">
         <div class="hero-content">
           <h2>Hello, I'm Jesper</h2>
-          <p>My passion is to create innovative solutions to real-world problems that feel good to use</p>
+          <p>I love creating easy to use applications that solve real world problems.</p>
           <a href="#contact" class="cta-button" @click.prevent="scrollToContact">Get in touch</a>
         </div>
         <img src="@/assets/profile-image.jpg" alt="Jesper Laurell" class="profile-image" />
