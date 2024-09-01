@@ -26,9 +26,9 @@
         <h2>Featured Projects</h2>
         <div class="project-grid">
           <div v-for="project in featuredProjects" :key="project.name" class="project-card">
+            <i :class="['project-icon', project.icon]"></i>
             <h3>{{ project.name }}</h3>
             <p>{{ project.description }}</p>
-            <p>Language: {{ project.language }}</p>
             <a :href="project.url" target="_blank" class="project-link">View Project</a>
           </div>
         </div>
@@ -83,8 +83,9 @@
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faLinkedin, faGithub, faTwitter } from '@fortawesome/free-brands-svg-icons'
+import { faRobot, faBrain, faListCheck, faArrowRight } from '@fortawesome/free-solid-svg-icons'
 
-library.add(faLinkedin, faGithub, faTwitter)
+library.add(faLinkedin, faGithub, faTwitter, faRobot, faBrain, faListCheck, faArrowRight)
 
 export default {
   name: "App",
@@ -102,22 +103,16 @@ export default {
       ],
       featuredProjects: [
         {
-          name: 'Image-Analysis',
-          description: 'Solutions for assignments and home exam in Image analysis course FMAN20',
-          language: 'MATLAB',
-          url: 'https://github.com/snoboll/Image-Analysis'
+          name: 'RootPi',
+          description: 'Co-founded RootPi, specializing in innovative AI solutions and software development.',
+          icon: 'fa-solid fa-robot',
+          url: 'https://rootpi.xyz/'
         },
         {
-          name: 'Artificial-Intelligence',
-          description: 'Assignments for course in AI, EDAP01',
-          language: 'Python',
-          url: 'https://github.com/snoboll/Artificial-Intelligence'
-        },
-        {
-          name: 'TodoDjango',
-          description: 'A Todo application built with Django',
-          language: 'Python',
-          url: 'https://github.com/snoboll/TodoDjango'
+          name: 'currencydebasement2',
+          description: 'An interactive visualization of global currency debasement.',
+          icon: 'fa-solid fa-brain',
+          url: 'https://github.com/snoboll/currencydebasement2'
         }
       ],
       contactForm: {
@@ -145,6 +140,7 @@ export default {
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap');
 
+/* Global Styles */
 body {
   margin: 0;
   padding: 0;
@@ -171,13 +167,14 @@ body {
   overflow-x: hidden;
 }
 
+h1, h2, h3, .tagline {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Header Styles */
 header {
   text-align: center;
   margin-bottom: 4rem;
-}
-
-h1, h2, h3, .tagline {
-  font-family: 'Poppins', sans-serif;
 }
 
 h1 {
@@ -195,12 +192,14 @@ h1 {
   line-height: 1.4;
 }
 
+/* Main Content Styles */
 .main-content {
   display: flex;
   flex-direction: column;
   gap: 4rem;
 }
 
+/* Hero Section Styles */
 .hero {
   display: flex;
   align-items: center;
@@ -218,17 +217,6 @@ h1 {
   color: #ff8c00;
 }
 
-.cta-button {
-  display: inline-block;
-  background-color: #ff8c00;
-  color: #1a1a1a;
-  padding: 0.8rem 1.5rem;
-  border-radius: 25px;
-  text-decoration: none;
-  font-weight: 600;
-  margin-top: 1rem;
-}
-
 .profile-image {
   width: 300px;
   height: 300px;
@@ -236,7 +224,8 @@ h1 {
   object-fit: cover;
 }
 
-.skills, .featured-projects {
+/* Skills and Projects Section Styles */
+.skills, .featured-projects, .contact {
   background-color: #2a2a2a;
   border-radius: 10px;
   padding: 2rem;
@@ -257,6 +246,10 @@ h1 {
   font-size: 0.85rem;
   font-weight: 600;
   transition: transform 0.3s ease, background-color 0.3s ease;
+  min-height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .skill-tag:hover {
@@ -264,46 +257,75 @@ h1 {
   background-color: #ffa500;
 }
 
+/* Updated Project Card Styles */
 .project-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
 }
 
 .project-card {
   background-color: #333333;
-  border-radius: 10px;
-  padding: 1.5rem;
-  transition: transform 0.3s ease;
+  border-radius: 15px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+  overflow: hidden;
 }
 
-.project-card:hover {
-  transform: translateY(-5px);
+.project-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(to right, #ff8c00, #ffa500);
 }
 
 .project-card h3 {
   color: #ff8c00;
   margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.project-card p {
+  color: #f0f0f0;
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+
+.project-icon {
+  font-size: 2.5rem;
+  color: #ffa500;
+  margin-bottom: 1rem;
 }
 
 .project-link {
-  display: inline-block;
-  margin-top: 1rem;
-  color: #ff8c00;
+  color: #1a1a1a; /* Ensure text color contrasts with the background */
+  border: 1px solid #ffa500;
   text-decoration: none;
   font-weight: 600;
+  padding: 0.8rem 1.2rem;
+  border-radius: 25px;
+  display: inline-flex;
+  align-items: center;
+  margin-top: 1rem; /* Moved margin-top here */
 }
 
-footer {
-  text-align: center;
-  margin-top: 4rem;
-  color: #ffa500;
+.project-link:hover,
+.project-link:focus {
+  background-color: #ffa500;
+  color: #1a1a1a;
+  outline: none;
 }
 
+
+/* Contact Section Styles */
 .contact {
-  background-color: #2a2a2a;
-  border-radius: 10px;
-  padding: 2rem;
   margin-top: 4rem;
 }
 
@@ -347,23 +369,12 @@ footer {
   color: #f0f0f0;
   font-size: 16px;
   box-sizing: border-box;
+  min-height: 44px;
 }
 
 .form-group textarea {
   height: 120px;
   resize: vertical;
-}
-
-.submit-button {
-  background-color: #ff8c00;
-  color: #1a1a1a;
-  padding: 0.8rem 1.5rem;
-  border: none;
-  border-radius: 25px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  width: 100%;
 }
 
 .contact-info {
@@ -394,15 +405,63 @@ footer {
   gap: 1rem;
 }
 
+/* Button and Link Styles */
+.cta-button,
+.submit-button,
+.project-link,
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.8rem 1.2rem;
+  min-height: 44px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.cta-button,
+.submit-button {
+  background-color: #ff8c00;
+  color: #1a1a1a;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+}
+
+.cta-button:hover,
+.cta-button:focus {
+  background-color: #ffa500;
+  color: #1a1a1a;
+  outline: none;
+}
+
+.project-link {
+  color: #ff8c00;
+  margin-top: 1rem;
+}
+
 .social-link {
   color: #ffa500;
-  text-decoration: none;
   font-size: 1.5rem;
-  transition: color 0.3s ease;
 }
 
 .social-link:hover {
   color: #ff8c00;
+}
+
+/* Footer Styles */
+footer {
+  text-align: center;
+  margin-top: 4rem;
+  color: #ffa500;
+}
+
+/* Responsive Styles */
+@media (max-width: 1240px) {
+  body {
+    background-attachment: scroll;
+  }
 }
 
 @media (max-width: 768px) {
@@ -466,12 +525,6 @@ footer {
     flex-wrap: wrap;
   }
 
-  .form-group input,
-  .form-group textarea {
-    font-size: 16px;
-    padding: 0.6rem;
-  }
-
   .main-content {
     gap: 2rem;
   }
@@ -497,42 +550,9 @@ footer {
   }
 }
 
-/* Improve touch targets */
-.cta-button,
-.submit-button,
-.project-link,
-.social-link {
-  padding: 0.8rem 1.2rem;
-  min-height: 44px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.skill-tag {
-  min-height: 32px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Improve form usability on mobile */
-.form-group input,
-.form-group textarea {
-  padding: 0.8rem;
-  min-height: 44px;
-}
-
 /* Ensure content doesn't overflow */
 img, video, iframe {
   max-width: 100%;
   height: auto;
-}
-
-/* Add this new media query */
-@media (max-width: 1240px) {
-  body {
-    background-attachment: scroll;
-  }
 }
 </style>
