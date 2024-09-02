@@ -13,7 +13,7 @@
         <h2>Hello, I'm Jesper</h2>
         <p>
           I love creating easy to use applications that solve real world
-          problems.
+          problems. I also love working out, self improvement and hard money.
         </p>
         <a href="#contact" class="cta-button" @click.prevent="scrollToContact"
           >Get in touch</a
@@ -74,15 +74,24 @@
           />
           <span>Malmö, Sweden</span>
         </p>
+        <p class="contact-item">
+          <font-awesome-icon
+            :icon="['fas', 'graduation-cap']"
+            class="contact-icon"
+          />
+          <span>LTH, Lund | Austrian School of Economics</span>
+        </p>
         <div class="social-links">
-          <a href="#" target="_blank" class="social-link" aria-label="LinkedIn">
+          <a
+            href="https://www.linkedin.com/in/jesper-laurell-2b0213153/?originalSubdomain=se"
+            target="_blank"
+            class="social-link"
+            aria-label="LinkedIn"
+          >
             <font-awesome-icon :icon="['fab', 'linkedin']" />
           </a>
           <a href="#" target="_blank" class="social-link" aria-label="GitHub">
             <font-awesome-icon :icon="['fab', 'github']" />
-          </a>
-          <a href="#" target="_blank" class="social-link" aria-label="Twitter">
-            <font-awesome-icon :icon="['fab', 'twitter']" />
           </a>
         </div>
       </div>
@@ -115,6 +124,7 @@ import {
   faEnvelope,
   faPhone,
   faMapMarkerAlt,
+  faGraduationCap,
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -127,7 +137,8 @@ library.add(
   faArrowRight,
   faEnvelope,
   faPhone,
-  faMapMarkerAlt
+  faMapMarkerAlt,
+  faGraduationCap
 );
 
 import TalkToMeAbout from "./components/TalkToMeAbout.vue";

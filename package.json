@@ -13,8 +13,10 @@
     "@fortawesome/free-brands-svg-icons": "^6.6.0",
     "@fortawesome/free-solid-svg-icons": "^6.6.0",
     "@fortawesome/vue-fontawesome": "^3.0.8",
-    "chart.js": "^4.4.4",
+    "chart.js": "^3.9.1",
+    "chartjs-adapter-date-fns": "^2.0.1",
     "core-js": "^3.8.3",
+    "date-fns": "^2.30.0",
     "font-awesome": "^4.7.0",
     "vue": "^3.2.13",
     "yarn": "^1.22.22"

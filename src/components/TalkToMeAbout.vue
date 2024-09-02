@@ -5,10 +5,12 @@
       <li class="topic-item">
         <span class="topic-icon">💪</span>
         <span class="topic-text">Murph</span>
+        <MurphGraph />
       </li>
       <li class="topic-item">
         <span class="topic-icon">₿</span>
         <span class="topic-text">Bitcoin</span>
+        <BitcoinChart />
       </li>
       <li class="topic-item">
         <span class="topic-icon">📈</span>
@@ -19,26 +21,34 @@
 </template>
 
 <script>
+import MurphGraph from "./MurphGraph.vue";
+import BitcoinChart from "./BitcoinChart.vue";
+
 export default {
   name: "TalkToMeAbout",
+  components: {
+    MurphGraph,
+    BitcoinChart,
+  },
 };
 </script>
 
 <style scoped>
 .talk-to-me-about {
+  margin-top: 4rem;
   text-align: center;
 }
 
 h2 {
-  font-size: 1.5rem;
+  font-size: 2.5rem;
   color: #ff8c00;
   margin-bottom: 2rem;
 }
 
 .topic-list {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   gap: 2rem;
   list-style-type: none;
   padding: 0;
@@ -52,13 +62,8 @@ h2 {
   border-radius: 10px;
   padding: 1.5rem;
   transition: transform 0.3s ease;
-  width: calc(33.333% - 2rem); /* Set width to one-third minus gap */
-  max-width: 200px; /* Maximum width for larger screens */
-  min-width: 150px; /* Minimum width for smaller screens */
-}
-
-.topic-item:hover {
-  transform: translateY(-5px);
+  width: 100%;
+  max-width: 800px;
 }
 
 .topic-icon {
@@ -69,18 +74,25 @@ h2 {
 .topic-text {
   font-size: 1.2rem;
   color: #f0f0f0;
+  margin-bottom: 1rem;
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
   .topic-item {
-    width: calc(50% - 2rem); /* Two columns on medium screens */
+    width: 90%;
+    padding: 1rem;
   }
-}
 
-@media (max-width: 480px) {
-  .topic-item {
-    width: 100%; /* Full width on small screens */
+  h2 {
+    font-size: 2rem;
+  }
+
+  .topic-icon {
+    font-size: 2rem;
+  }
+
+  .topic-text {
+    font-size: 1rem;
   }
 }
 </style>
