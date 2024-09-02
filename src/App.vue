@@ -52,6 +52,7 @@
         </div>
       </div>
     </section>
+    <TalkToMeAbout />
 
     <section id="contact" class="contact">
       <h2>Get in Touch</h2>
@@ -129,10 +130,13 @@ library.add(
   faMapMarkerAlt
 );
 
+import TalkToMeAbout from "./components/TalkToMeAbout.vue";
+
 export default {
   name: "App",
   components: {
     FontAwesomeIcon,
+    TalkToMeAbout,
   },
   data() {
     return {
@@ -179,7 +183,7 @@ export default {
           description:
             "An interactive visualization of global currency debasement.",
           icon: "fa-solid fa-brain",
-          url: "https://github.com/snoboll/c",
+          url: "https://github.com/snoboll/currencydebasement2",
         },
       ],
     };
