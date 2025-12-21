@@ -20,6 +20,12 @@ export default {
     async createChart() {
       const data = await this.fetchBitcoinData();
       const ctx = this.$refs.bitcoinChart.getContext("2d");
+      
+      // Create gradient
+      const gradient = ctx.createLinearGradient(0, 0, 0, 300);
+      gradient.addColorStop(0, "rgba(255, 140, 0, 0.3)");
+      gradient.addColorStop(1, "rgba(255, 140, 0, 0)");
+      
       new Chart(ctx, {
         type: "line",
         data: {
@@ -28,41 +34,54 @@ export default {
             {
               label: "USD/BTC",
               data: data.map((d) => 1 / d[1]),
-              borderColor: "rgb(255, 99, 132)",
-              backgroundColor: "rgba(255, 99, 132, 0.5)",
+              borderColor: "#ff8c00",
+              backgroundColor: gradient,
+              borderWidth: 2,
               fill: true,
+              tension: 0.4,
+              pointRadius: 0,
+              pointHoverRadius: 6,
+              pointHoverBackgroundColor: "#ff8c00",
+              pointHoverBorderColor: "#1a1a1a",
+              pointHoverBorderWidth: 2,
             },
           ],
         },
         options: {
           responsive: true,
           maintainAspectRatio: false,
-          scales: {
-            x: {
-              type: "time",
-              time: {
-                unit: "month",
-              },
-              adapters: {
-                date: {
-                  locale: enUS,
-                },
-              },
-            },
-            y: {
-              title: {
-                display: true,
-                text: "USD/BTC",
-              },
-              ticks: {
-                callback: function (value) {
-                  return value.toFixed(8);
-                },
-              },
-            },
+          interaction: {
+            intersect: false,
+            mode: "index",
           },
           plugins: {
+            legend: {
+              labels: {
+                color: "rgba(240, 240, 240, 0.8)",
+                font: {
+                  family: "'Outfit', sans-serif",
+                  size: 12,
+                },
+                padding: 20,
+                usePointStyle: true,
+                pointStyle: "circle",
+              },
+            },
             tooltip: {
+              backgroundColor: "rgba(26, 26, 26, 0.95)",
+              titleColor: "#ff8c00",
+              bodyColor: "rgba(240, 240, 240, 0.9)",
+              borderColor: "rgba(255, 140, 0, 0.3)",
+              borderWidth: 1,
+              padding: 12,
+              cornerRadius: 8,
+              titleFont: {
+                family: "'Outfit', sans-serif",
+                weight: "600",
+              },
+              bodyFont: {
+                family: "'JetBrains Mono', monospace",
+              },
               callbacks: {
                 label: function (context) {
                   let label = context.dataset.label || "";
@@ -74,6 +93,55 @@ export default {
                   }
                   return label;
                 },
+              },
+            },
+          },
+          scales: {
+            x: {
+              type: "time",
+              time: {
+                unit: "month",
+              },
+              adapters: {
+                date: {
+                  locale: enUS,
+                },
+              },
+              ticks: {
+                color: "rgba(240, 240, 240, 0.5)",
+                font: {
+                  family: "'JetBrains Mono', monospace",
+                  size: 10,
+                },
+              },
+              grid: {
+                color: "rgba(255, 140, 0, 0.08)",
+                drawBorder: false,
+              },
+            },
+            y: {
+              title: {
+                display: true,
+                text: "USD/BTC",
+                color: "rgba(240, 240, 240, 0.7)",
+                font: {
+                  family: "'Outfit', sans-serif",
+                  size: 12,
+                },
+              },
+              ticks: {
+                color: "rgba(240, 240, 240, 0.5)",
+                font: {
+                  family: "'JetBrains Mono', monospace",
+                  size: 11,
+                },
+                callback: function (value) {
+                  return value.toFixed(8);
+                },
+              },
+              grid: {
+                color: "rgba(255, 140, 0, 0.08)",
+                drawBorder: false,
               },
             },
           },

@@ -16,46 +16,100 @@ export default {
   methods: {
     createChart() {
       const ctx = this.$refs.murphChart.getContext("2d");
+      
+      // Create gradient
+      const gradient = ctx.createLinearGradient(0, 0, 0, 300);
+      gradient.addColorStop(0, "rgba(255, 140, 0, 0.25)");
+      gradient.addColorStop(1, "rgba(255, 140, 0, 0)");
+      
       new Chart(ctx, {
         type: "line",
         data: {
           labels: this.getLabels(),
           datasets: [
             {
-              label: "Regular Murph",
+              label: "Time (min)",
               data: this.getRegularMurphData(),
-              borderColor: "rgb(75, 192, 192)",
-              tension: 0.1,
-            },
-            {
-              label: "Kompismurph",
-              data: this.getKompismurphData(),
-              borderColor: "rgb(255, 99, 132)",
-              tension: 0.1,
-            },
-            {
-              label: "9kg Murph",
-              data: this.get9kgMurphData(),
-              borderColor: "rgb(255, 205, 86)",
-              tension: 0.1,
+              borderColor: "#ff8c00",
+              backgroundColor: gradient,
+              borderWidth: 2,
+              tension: 0.3,
+              fill: true,
+              spanGaps: true,
+              pointBackgroundColor: "#ff8c00",
+              pointBorderColor: "#1a1a1a",
+              pointBorderWidth: 2,
+              pointRadius: 4,
+              pointHoverRadius: 6,
             },
           ],
         },
         options: {
           responsive: true,
           maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              display: false,
+            },
+            tooltip: {
+              backgroundColor: "rgba(26, 26, 26, 0.95)",
+              titleColor: "#ff8c00",
+              bodyColor: "rgba(240, 240, 240, 0.9)",
+              borderColor: "rgba(255, 140, 0, 0.3)",
+              borderWidth: 1,
+              padding: 12,
+              cornerRadius: 8,
+              titleFont: {
+                family: "'Outfit', sans-serif",
+                weight: "600",
+              },
+              bodyFont: {
+                family: "'JetBrains Mono', monospace",
+              },
+              callbacks: {
+                label: function (context) {
+                  return context.parsed.y.toFixed(1) + " min";
+                },
+              },
+            },
+          },
           scales: {
             x: {
               type: "category",
               ticks: {
-                maxRotation: 90,
-                minRotation: 90,
+                maxRotation: 45,
+                minRotation: 45,
+                color: "rgba(240, 240, 240, 0.5)",
+                font: {
+                  family: "'JetBrains Mono', monospace",
+                  size: 10,
+                },
+              },
+              grid: {
+                color: "rgba(255, 140, 0, 0.08)",
+                drawBorder: false,
               },
             },
             y: {
               title: {
                 display: true,
                 text: "Time (minutes)",
+                color: "rgba(240, 240, 240, 0.7)",
+                font: {
+                  family: "'Outfit', sans-serif",
+                  size: 12,
+                },
+              },
+              ticks: {
+                color: "rgba(240, 240, 240, 0.5)",
+                font: {
+                  family: "'JetBrains Mono', monospace",
+                  size: 11,
+                },
+              },
+              grid: {
+                color: "rgba(255, 140, 0, 0.08)",
+                drawBorder: false,
               },
             },
           },
@@ -151,98 +205,6 @@ export default {
         null,
         40.37,
         null,
-        null,
-      ];
-    },
-    getKompismurphData() {
-      return [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        47,
-        null,
-        null,
-        null,
-        null,
-        null,
-        52,
-      ];
-    },
-    get9kgMurphData() {
-      return [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        55.72,
-        null,
-        48.22,
-        null,
-        49.28,
         null,
       ];
     },

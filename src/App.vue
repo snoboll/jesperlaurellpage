@@ -29,9 +29,12 @@
     <section class="skills">
       <h2>Skills</h2>
       <div class="skill-tags">
-        <span v-for="skill in skills" :key="skill" class="skill-tag">{{
-          skill
-        }}</span>
+        <span
+          v-for="(skill, index) in skills"
+          :key="skill"
+          class="skill-tag"
+          :style="{ '--i': index }"
+        >{{ skill }}</span>
       </div>
     </section>
 
@@ -118,7 +121,10 @@ import {
   faBrain,
   faListCheck,
   faArrowRight,
+  faDumbbell,
+  faArrowTrendUp,
 } from "@fortawesome/free-solid-svg-icons";
+import { faBitcoin } from "@fortawesome/free-brands-svg-icons";
 import "./App.css"; // Import the CSS file
 import {
   faEnvelope,
@@ -138,7 +144,10 @@ library.add(
   faEnvelope,
   faPhone,
   faMapMarkerAlt,
-  faGraduationCap
+  faGraduationCap,
+  faDumbbell,
+  faArrowTrendUp,
+  faBitcoin
 );
 
 import TalkToMeAbout from "./components/TalkToMeAbout.vue";
@@ -152,34 +161,22 @@ export default {
   data() {
     return {
       skills: [
-        "JavaScript",
         "Vue",
+        "React",
         "Python",
         "Laravel",
-        "PHP",
-        "OpenAI",
-        "CSS",
-        "HTML",
-        "UI/UX Design",
-        "GitHub",
         "Node.js",
-        "Java",
-        "IaaS",
-        "Responsive Web Design",
         "Flutter",
         "Dart",
-        "iOS/Android App Dev",
-        "Scrum",
+        "Unity",
+        "C#",
         "Machine Learning",
         "Reinforcement Learning",
-        "React",
-        "SQL",
-        "Unity",
-        "Game Dev",
-        "C#",
-        "Blender",
+        "OpenAI",
         "VR Development",
-        "Meta Quest Dev",
+        "Meta Quest",
+        "Blender",
+        "UI/UX Design",
       ],
       featuredProjects: [
         {
@@ -188,13 +185,6 @@ export default {
             "Co-founded RootPi, specializing in innovative AI solutions and software development.",
           icon: "fa-solid fa-robot",
           url: "https://rootpi.xyz/",
-        },
-        {
-          name: "currencydebasement2",
-          description:
-            "An interactive visualization of global currency debasement.",
-          icon: "fa-solid fa-brain",
-          url: "https://github.com/snoboll/currencydebasement2",
         },
       ],
     };
