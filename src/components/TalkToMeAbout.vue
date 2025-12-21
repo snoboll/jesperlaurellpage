@@ -5,14 +5,14 @@
       <li class="topic-item">
         <div class="topic-header">
           <font-awesome-icon :icon="['fas', 'dumbbell']" class="topic-icon" />
-          <span class="topic-text">Murph</span>
+        <span class="topic-text">Murph</span>
         </div>
         <MurphGraph />
       </li>
       <li class="topic-item">
         <div class="topic-header">
           <font-awesome-icon :icon="['fab', 'bitcoin']" class="topic-icon" />
-          <span class="topic-text">Bitcoin</span>
+        <span class="topic-text">Bitcoin</span>
         </div>
         <BitcoinChart />
       </li>

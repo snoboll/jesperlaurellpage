@@ -38,6 +38,8 @@
       </div>
     </section>
 
+    <RubiksCube />
+
     <section class="featured-projects">
       <h2>What I do</h2>
       <div class="project-grid">
@@ -151,12 +153,14 @@ library.add(
 );
 
 import TalkToMeAbout from "./components/TalkToMeAbout.vue";
+import RubiksCube from "./components/RubiksCube.vue";
 
 export default {
   name: "App",
   components: {
     FontAwesomeIcon,
     TalkToMeAbout,
+    RubiksCube,
   },
   data() {
     return {
