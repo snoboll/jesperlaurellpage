@@ -1,18 +1,21 @@
 <template>
   <section class="talk-to-me-about">
-    <h2>Talk to Me About</h2>
+    <div class="section-head">
+      <p class="eyebrow">02 / Interests</p>
+      <h2>Talk to me about</h2>
+    </div>
     <ul class="topic-list">
       <li class="topic-item">
         <div class="topic-header">
           <font-awesome-icon :icon="['fas', 'dumbbell']" class="topic-icon" />
-        <span class="topic-text">Murph</span>
+          <span class="topic-text">Murph</span>
         </div>
         <MurphGraph />
       </li>
       <li class="topic-item">
         <div class="topic-header">
           <font-awesome-icon :icon="['fab', 'bitcoin']" class="topic-icon" />
-        <span class="topic-text">Bitcoin</span>
+          <span class="topic-text">Bitcoin</span>
         </div>
         <BitcoinChart />
       </li>
@@ -37,36 +40,53 @@ export default {
 
 <style scoped>
 .talk-to-me-about {
-  margin-top: 2rem;
-  text-align: center;
   opacity: 0;
-  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 1.5s forwards;
+  animation: reveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+@keyframes reveal {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-h2 {
-  font-size: 2rem;
-  font-weight: 600;
-  color: #ff8c00;
+.section-head {
   margin-bottom: 2rem;
-  font-family: "Outfit", sans-serif;
-  letter-spacing: -0.02em;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.72rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: #ff8c00;
+  margin: 0 0 1rem;
+}
+
+.eyebrow::before {
+  content: "";
+  width: 28px;
+  height: 1px;
+  background: #ff8c00;
+  opacity: 0.6;
+}
+
+.section-head h2 {
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: clamp(1.7rem, 3vw, 2.1rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: #f0ece4;
+  margin: 0;
+  line-height: 1.1;
 }
 
 .topic-list {
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 1.5rem;
   list-style-type: none;
   padding: 0;
@@ -76,79 +96,44 @@ h2 {
 .topic-item {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  background: linear-gradient(145deg, #2d2d2d 0%, #252525 100%);
-  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 14px;
   padding: 2rem;
-  width: 100%;
-  max-width: 800px;
-  border: 1px solid rgba(255, 140, 0, 0.1);
-  position: relative;
-  overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
+  transition: border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.topic-item::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, 
-    transparent 0%, 
-    rgba(255, 140, 0, 0.5) 50%, 
-    transparent 100%);
-}
-
-.topic-item:hover {
-  transform: translateY(-5px);
-  border-color: rgba(255, 140, 0, 0.25);
-  box-shadow: 
-    0 15px 35px rgba(0, 0, 0, 0.25),
-    0 0 25px rgba(255, 140, 0, 0.06);
+@media (hover: hover) {
+  .topic-item:hover {
+    border-color: rgba(255, 140, 0, 0.25);
+  }
 }
 
 .topic-header {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
 }
 
 .topic-icon {
-  font-size: 1.75rem;
+  font-size: 1.25rem;
   color: #ff8c00;
-  transition: transform 0.3s ease;
-}
-
-.topic-item:hover .topic-icon {
-  transform: scale(1.15);
 }
 
 .topic-text {
-  font-size: 1.25rem;
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: 1.1rem;
   font-weight: 500;
-  color: #ff8c00;
-  font-family: "Outfit", sans-serif;
+  color: #f0ece4;
+  letter-spacing: -0.01em;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 640px) {
   .topic-item {
-    width: 100%;
     padding: 1.5rem;
-  }
-
-  h2 {
-    font-size: 1.6rem;
-  }
-
-  .topic-icon {
-    font-size: 1.5rem;
-  }
-
-  .topic-text {
-    font-size: 1.1rem;
   }
 }
 </style>
